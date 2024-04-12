@@ -8,6 +8,9 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
+    canRegister: {
+        type: Boolean,
+    },
     canResetPassword: {
         type: Boolean,
     },
@@ -76,7 +79,14 @@ const submit = () => {
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
+                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Register
+                </Link>
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
